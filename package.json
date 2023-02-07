@@ -1,6 +1,6 @@
 {
   "name": "@krosschain/ts-lib-crypto",
-  "version": "1.4.2",
+  "version": "1.0.0",
   "description": "This library contains all algorithm implementations like signature verification and protocol entries like address used in Krosschain.",
   "keywords": [
     "krosschain",
@@ -16,12 +16,12 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "postversion": "npm run build; cd dist; npm publish",
+    "postversion": "npm run build; cd dist; npm publish --access public",
     "postpublish": "git push origin head",
     "build": "ts-node build/build.ts cp src/libs/*.d.ts dist/libs;cp src/libs/*.js dist/libs && npm run build-min",
     "build-min": "webpack --config webpack.config.js --env",
     "deploy": "cd dist; npm publish;",
-    "deploy-beta": "cd dist; npm publish -tag beta;",
+    "deploy-beta": "cd dist; npm publish -tag beta --access public;",
     "fix-style": "tslint --fix -c tslint.json '{src,test,usage}/**/*{.ts,.tsx}'",
     "test": "jest",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand"

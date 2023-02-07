@@ -1,4 +1,4 @@
-﻿# ts-lib-crypto [![npm version](https://badge.fury.io/js/%40waves%2Fts-lib-crypto.svg)](https://www.npmjs.com/package/@waves/ts-lib-crypto)
+﻿# ts-lib-crypto [![npm version](https://badge.fury.io/js/%40waves%2Fts-lib-crypto.svg)](https://www.npmjs.com/package/@krosschain/ts-lib-crypto)
 
 The waves protocol is a set of rules named consensus by which nodes reach an agreement on the network, and format which nodes use to communicate with each other. It based on several well described hash and crypto algorithms and has predefined set of entries to operate on network. This library contains all algorithm implementations like signature verification and protocol entries like address used in waves protocol. Also it contains utility methods and format converters to help 3rd party developers.
 
@@ -47,24 +47,24 @@ The waves protocol is a set of rules named consensus by which nodes reach an agr
 - **[More examples](#more-examples)**
 ## Installation
 ```
-npm install @waves/ts-lib-crypto
+npm install @krosschain/ts-lib-crypto
 ```
 ## Import styles
 The is several ways of doing things when using **ts-lib-crypto**.
 You can import functions strait-forward:
 ```ts
-import { address } from  '@waves/ts-lib-crypto'
+import { address } from  '@krosschain/ts-lib-crypto'
 address('my secret seed') // 3PAP3wkgbGjdd1FuBLn9ajXvo6edBMCa115
 ```
 Or you can use a crypto constructor function:
 ```ts
-import { crypto } from  '@waves/ts-lib-crypto'
+import { crypto } from  '@krosschain/ts-lib-crypto'
 const { address } = crypto()
 address('my secret seed') // 3PAP3wkgbGjdd1FuBLn9ajXvo6edBMCa115
 ```
 The second approach gives you more flexibility, using this approach you are able to embed the **seed** and use all seed-dependant functions without **seed** parameter:
 ```ts
-import { crypto } from  '@waves/ts-lib-crypto'
+import { crypto } from  '@krosschain/ts-lib-crypto'
 const { address } = crypto({seed: 'my secret seed'})
 address() // 3PAP3wkgbGjdd1FuBLn9ajXvo6edBMCa115
 ```
@@ -72,7 +72,7 @@ address() // 3PAP3wkgbGjdd1FuBLn9ajXvo6edBMCa115
 ## Inputs 
 **ts-lib-crypto** is even more flexible. Any function argument that represents binary data or seed could be passed in several ways. Let's take a look on the following example:
 ```ts
-import { address } from  '@waves/ts-lib-crypto'
+import { address } from  '@krosschain/ts-lib-crypto'
 const  seedString  =  'uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine'
 const  seedBytesAsArray  = [117, 110, 99, 108, 101, 32, 112, 117, 115, 104, 32, 104, 117, 109, 97, 110, 32, 98, 117, 115, 32, 101, 99, 104, 111, 32, 100, 114, 97, 115, 116, 105, 99, 32, 103, 97, 114, 100, 101, 110, 32, 106, 111, 107, 101, 32, 115, 97, 110, 100, 32, 119, 97, 114, 102, 97, 114, 101, 32, 115, 101, 110, 116, 101, 110, 99, 101, 32, 102, 111, 115, 115, 105, 108, 32, 116, 105, 116, 108, 101, 32, 99, 111, 108, 111, 114, 32, 99, 111, 109, 98, 105, 110, 101]
 const  seedBytesAsUintArray  =  Uint8Array.from(seedBytesAsArray)
@@ -83,7 +83,7 @@ address(seedBytesAsUintArray) // 3P9KR33QyXwfTXv8kKtNGZYtgKk3RXSUk36
 As you can see **seed** parameter is treated the same way for **number[]** or **Uint8Array**.
 When you pass binary data is could be represented as  **number[]** or **Uint8Array** or even **base58**:
 ```ts
-import { address, randomSeed, sha256 } from '@waves/ts-lib-crypto'
+import { address, randomSeed, sha256 } from '@krosschain/ts-lib-crypto'
 const seed = randomSeed() // uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine
 const addressBase58 = address(seed) // 3P9KR33QyXwfTXv8kKtNGZYtgKk3RXSUk36
 sha256(addressBase58) // DMPenguwWdLdZ7tesiZY6grw7mjKU2Dob1cn9Uq9TKfp
@@ -112,13 +112,13 @@ If you prefer **binary** output, you can alter this behaviour and make those fun
 When using inline import style:
 ```ts
 // You can use [/bytes] module when importing functions to set output to UInt8Array
-import { address } from  '@waves/ts-lib-crypto/bytes'
+import { address } from  '@krosschain/ts-lib-crypto/bytes'
 address('uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine')
 // => Uint8Array [1,87,55,118,79,89,6,115,207,200,130,220,32,33,101,69,108,108,53,48,167,127,203,18,143,121]
 ```
 When using crypto constructor function:
 ```ts
-import { crypto } from  '@waves/ts-lib-crypto'
+import { crypto } from  '@krosschain/ts-lib-crypto'
 const { address } = crypto({ output: 'Bytes' })
 address('uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine')
 // => Uint8Array [1,87,55,118,79,89,6,115,207,200,130,220,32,33,101,69,108,108,53,48,167,127,203,18,143,121]
@@ -137,7 +137,7 @@ const handWrittenSeedBytes = [117, 110, 99, 108, 101, 32, 112, 117, 115, 104, 32
 ```
 Or if you need seed with nonce:
 ```ts
-import { seedWithNonce, randomSeed, address } from '@waves/ts-lib-crypto'
+import { seedWithNonce, randomSeed, address } from '@krosschain/ts-lib-crypto'
 
 const nonce = 1
 const seedphrase = randomSeed() // uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine
@@ -152,7 +152,7 @@ There is also a way to generate seed-phrase using **ts-lib-crypto** described in
 
 ### randomSeed
 ```ts
-import { randomSeed } from '@waves/ts-lib-crypto'
+import { randomSeed } from '@krosschain/ts-lib-crypto'
 
 randomSeed() //uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine
 ```
@@ -165,7 +165,7 @@ The default seed size is 15 words.
 ### seedWordsList
 If you want to get all the valid seed words that official waves-client generates seed-phrase from, use **seedWordsList** the 2048 word array.
 ```ts
-import { seedWordsList } from '@waves/ts-lib-crypto'
+import { seedWordsList } from '@krosschain/ts-lib-crypto'
 console.log(seedWordsList) // [ 'abandon','ability','able', ... 2045 more items ]
 ```
 ## Keys and address
@@ -173,14 +173,14 @@ console.log(seedWordsList) // [ 'abandon','ability','able', ... 2045 more items 
 ### publicKey
 You could get public key either from raw seed-phrase or seed with nonce:
 ```ts
-import { publicKey, seedWithNonce } from '@waves/ts-lib-crypto'
+import { publicKey, seedWithNonce } from '@krosschain/ts-lib-crypto'
 const seed = 'uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine'
 publicKey(seed) // 4KxUVD9NtyRJjU3BCvPgJSttoJX7cb3DMdDTNucLN121
 publicKey(seedWithNonce(seed, 0)) // 4KxUVD9NtyRJjU3BCvPgJSttoJX7cb3DMdDTNucLN121
 ```
 Or even from private key, it's usefull in some cases:
 ```ts
-import { publicKey, privateKey, seedWithNonce } from '@waves/ts-lib-crypto'
+import { publicKey, privateKey, seedWithNonce } from '@krosschain/ts-lib-crypto'
 const seed = 'uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine'
 const pk = privateKey(seed)
 publicKey({ privateKey: pk }) // 4KxUVD9NtyRJjU3BCvPgJSttoJX7cb3DMdDTNucLN121
@@ -189,7 +189,7 @@ publicKey({ privateKey: pk }) // 4KxUVD9NtyRJjU3BCvPgJSttoJX7cb3DMdDTNucLN121
 ### privateKey
 Same with private key:
 ```ts
-import { privateKey, seedWithNonce } from '@waves/ts-lib-crypto'
+import { privateKey, seedWithNonce } from '@krosschain/ts-lib-crypto'
 const  seed = 'uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine'
 privateKey(seed)
 privateKey(seedWithNonce(seed, 99))
@@ -197,7 +197,7 @@ privateKey(seedWithNonce(seed, 99))
 ### keyPair
 You could also obtain a keyPair:
 ```ts
-import { keyPair } from '@waves/ts-lib-crypto'
+import { keyPair } from '@krosschain/ts-lib-crypto'
 const  seed = 'uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine'
 keyPair(seed)
 // => { 
@@ -208,7 +208,7 @@ keyPair(seed)
 ### address
 You can create an address for *Mainnet*:
 ```ts
-import { address } from '@waves/ts-lib-crypto'
+import { address } from '@krosschain/ts-lib-crypto'
 const  seed = 'uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine'
 address(seed) // 3P9KR33QyXwfTXv8kKtNGZYtgKk3RXSUk36
 ```
@@ -218,7 +218,7 @@ address(seed, 'T') // 3MwJc5iX7QQGq5ciVFdNK7B5KSEGbUCVxDw
 ```
 alternatively You could use **TEST_NET_CHAIN_ID** constant instead of **T** literal like this:
 ```ts
-import { address, TEST_NET_CHAIN_ID } from '@waves/ts-lib-crypto'
+import { address, TEST_NET_CHAIN_ID } from '@krosschain/ts-lib-crypto'
 const  seed = 'uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine'
 address(seed, TEST_NET_CHAIN_ID) // 3MwJc5iX7QQGq5ciVFdNK7B5KSEGbUCVxDw
 ```
@@ -228,14 +228,14 @@ There are several more useful constants, you can check them in [\[constants\]](/
 To sign arbitrary bytes or usually transaction bytes you should use the **signBytes** function.
 Here is sign with seed example:
 ```ts
-import { signBytes } from '@waves/ts-lib-crypto'
+import { signBytes } from '@krosschain/ts-lib-crypto'
 const bytes = [117, 110, 99, 108, 101]
 const seed = 'uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine'
 signBytes(seed, bytes) // 5ZpULwrnUYoxQZcw26km6tgGbj1y23ywYB4A9bLCpax6PUdrhkCmmoLBP6C1G5yiMJ7drqN9jNxPym6f8vrPsWnm
 ```
 Also you can use private key to sign bytes:
 ```ts
-import { signBytes, privateKey } from '@waves/ts-lib-crypto'
+import { signBytes, privateKey } from '@krosschain/ts-lib-crypto'
 const bytes = [117, 110, 99, 108, 101]
 const seed = 'uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine'
 const key = privateKey(seed)
@@ -249,7 +249,7 @@ You can learn more about it in the [outputs](#outputs) section.
 #### verifySignature
 Verifying signature is a way to proof what particular bytes was signed with a particular private key or seed which correspond to public key that we are checking against:
 ```ts
-import { signBytes, verifySignature, keyPair } from '@waves/ts-lib-crypto'
+import { signBytes, verifySignature, keyPair } from '@krosschain/ts-lib-crypto'
 //Signature roundtrip
 const bytes = [117, 110, 99, 108, 101]
 const seed = 'uncle push human bus echo drastic garden joke sand warfare sentence fossil title color combine'
@@ -261,7 +261,7 @@ verifySignature(keys.publicKey, bytes, signature) // true
 There are three hashing algorithms available in **ts-lib-crypto**.
 #### blake2b
 ```ts
-import { blake2b } from '@waves/ts-lib-crypto'
+import { blake2b } from '@krosschain/ts-lib-crypto'
 const bytesArray = [117, 110, 99, 108, 101]
 const bytesUint = Uint8Array.from([117, 110, 99, 108, 101])
 const bytesBase58 = 'EFRr9cp'
@@ -272,7 +272,7 @@ blake2b(bytesBase58) // 9DqBU9wZAR85PyrUSJpwaU9DggM8veyMxRMvFe1q6atu
 ```
 #### keccak
 ```ts
-import { keccak } from '@waves/ts-lib-crypto'
+import { keccak } from '@krosschain/ts-lib-crypto'
 const bytesArray = [117, 110, 99, 108, 101]
 const bytesUint = Uint8Array.from([117, 110, 99, 108, 101])
 const bytesBase58 = 'EFRr9cp'
@@ -282,7 +282,7 @@ keccak(bytesBase58) // 5cqz9N2PPjDkSBSwga8AttKzQEHfn8aQ95rcZZmabLA7
 ```
 #### sha256
 ```ts
-import { sha256 } from '@waves/ts-lib-crypto'
+import { sha256 } from '@krosschain/ts-lib-crypto'
 const bytesArray = [117, 110, 99, 108, 101]
 const bytesUint = Uint8Array.from([117, 110, 99, 108, 101])
 const bytesBase58 = 'EFRr9cp'
@@ -295,13 +295,13 @@ There is several ways to get random values in **ts-lib-crypto**.
 To get an **Uint8Array** of random values simply use:
 #### randomBytes
 ```ts
-import { randomBytes } from '@waves/ts-lib-crypto'
+import { randomBytes } from '@krosschain/ts-lib-crypto'
 randomBytes(3) // Uint8Array [ 120, 46, 179 ]             
 ```
 If you want more control over the values format you could use:
 #### random
 ```ts
-import { random } from '@waves/ts-lib-crypto'
+import { random } from '@krosschain/ts-lib-crypto'
 
 const length = 3     
 random(length, 'Array8')       // [ 19, 172, 130 ]   
@@ -316,7 +316,7 @@ random(length, 'Uint32Array')  // Uint32Array [ 698646076, 2957331816, 207399758
 
 
 ```ts
-import { base16Encode, base16Decode, base58Encode, base58Decode, base64Encode, base64Decode, randomBytes } from '@waves/ts-lib-crypto'
+import { base16Encode, base16Decode, base58Encode, base58Decode, base64Encode, base64Decode, randomBytes } from '@krosschain/ts-lib-crypto'
 
 const bytes = randomBytes(32)
 
@@ -338,7 +338,7 @@ These methods implement waves messaging protocol
 - messageDecrypt
 - messageEncrypt
 ```typescript
-import { sharedKey, messageEncrypt, messageDecrypt, keyPair } from '@waves/ts-lib-crypto'
+import { sharedKey, messageEncrypt, messageDecrypt, keyPair } from '@krosschain/ts-lib-crypto'
 
 const bobKeyPair = keyPair('Bob')
 const aliceKeyPair = keyPair('Alice')
@@ -357,7 +357,7 @@ This is low level functionality where you have to generate key and iv yourself
 #### aesEncrypt
 Encrypt bytes using AES algorithm. 
 ```typescript
-import { aesEncrypt, randomBytes } from '@waves/ts-lib-crypto'
+import { aesEncrypt, randomBytes } from '@krosschain/ts-lib-crypto'
 
 const data = Uint8Arraty.from([1,2,3])
 const mode =  'CBC' // Possible modes are 'CBC' | 'CFB' | 'CTR' | 'OFB' | 'ECB' | 'GCM'
@@ -377,7 +377,7 @@ const decrypted = aesDecrypt(encrypted, key, mode, iv)
 ## Seed encryption
 These functions implements seed encryption protocol used in DexClient and WavesKeeper
 ```typescript
-import { encryptSeed, decryptSeed } from '@waves/ts-lib-crypto'
+import { encryptSeed, decryptSeed } from '@krosschain/ts-lib-crypto'
 
 const seed = 'some secret seed phrase i use'
 const encrypted = encryptSeed(seed, 'secure password')
@@ -389,7 +389,7 @@ Utility functions designed to help 3rd party developers working with js binary t
 #### split
 You can use split for splitting bytes to sub arrays.
 ```ts
-import { split, randomBytes } from '@waves/ts-lib-crypto'
+import { split, randomBytes } from '@krosschain/ts-lib-crypto'
 const bytes = randomBytes(2 + 3 + 4 + 10)
 split(bytes, 2, 3, 4)
 // [ 
@@ -410,19 +410,19 @@ const [a, b, c, rest] = split(bytes, 2, 3, 4)
 #### concat
 Concat is the opposite and pretty self-explanatory:
 ```ts
-import { concat, randomBytes } from '@waves/ts-lib-crypto'
+import { concat, randomBytes } from '@krosschain/ts-lib-crypto'
 const bytesA = randomBytes(2)
 const bytesB = randomBytes(2)
 concat(bytesA, bytesB) // Uint8Array [ 36, 18, 254, 205 ]
 ```
 #### stringToBytes
 ```ts
-import { stringToBytes } from '@waves/ts-lib-crypto'
+import { stringToBytes } from '@krosschain/ts-lib-crypto'
 stringToBytes('Waves!') // Uint8Array [ 87, 97, 118, 101, 115, 33 ]
 ```
 #### bytesToString
 ```ts
-import { bytesToString } from '@waves/ts-lib-crypto'
+import { bytesToString } from '@krosschain/ts-lib-crypto'
 bytesToString([ 87, 97, 118, 101, 115, 33 ]) // Waves!
 ```
 ## Constants
